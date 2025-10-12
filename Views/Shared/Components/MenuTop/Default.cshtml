@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<LibraryManagerment.Models.TbMenu>
 
-@foreach(var item in Model.Where(i=>i.Levels ==1))
+@foreach(var item in Model)
 {
-    <li class="drop-holder">
-        <a href="/@item.Alias">
+    <li class="nav-item">
+        <a class="nav-link" href="/@item.Alias">
             @item.Title
-            </a>
+        </a>
     </li>
 }

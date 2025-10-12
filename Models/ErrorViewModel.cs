@@ -1,4 +1,4 @@
-namespace LibraryManagerment.Models
+﻿namespace LibraryManagerment.Models
 {
     public class ErrorViewModel
     {
