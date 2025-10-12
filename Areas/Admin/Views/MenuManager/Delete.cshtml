@@ -1,0 +1,44 @@
+﻿@model LibraryManagerment.Models.TbMenu
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <h1 class="m-0">Xóa menu</h1>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-danger">
+                <div class="card-body">
+                    <h4>Bạn có chắc chắn muốn xóa menu này không?</h4>
+                    <dl class="row">
+                        <dt class="col-sm-2">ID</dt>
+                        <dd class="col-sm-10">@Model.MenuId</dd>
+
+                        <dt class="col-sm-2">Tiêu đề</dt>
+                        <dd class="col-sm-10">@Model.Title</dd>
+
+                        <dt class="col-sm-2">Alias</dt>
+                        <dd class="col-sm-10">@Model.Alias</dd>
+
+                        <dt class="col-sm-2">Cấp</dt>
+                        <dd class="col-sm-10">@Model.Levels</dd>
+
+                        <dt class="col-sm-2">Vị trí</dt>
+                        <dd class="col-sm-10">@Model.Position</dd>
+                    </dl>
+
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="MenuId" />
+                        <button type="submit" class="btn btn-danger">Xóa</button>
+                        <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
