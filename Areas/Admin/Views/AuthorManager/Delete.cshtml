@@ -1,0 +1,50 @@
+﻿@model LibraryManagerment.Models.TbAuthor
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Xóa tác giả</h1>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <a asp-area="Admin" asp-controller="AuthorManager" asp-action="Index" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Quay lại
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-danger">
+                <div class="card-header">
+                    <h3 class="card-title">Xác nhận xóa tác giả</h3>
+                </div>
+                <div class="card-body">
+                    <p>Bạn có chắc muốn xóa tác giả sau không?</p>
+                    <ul>
+                        <li><strong>Mã tác giả:</strong> @Model.AuthorId</li>
+                        <li><strong>Tên tác giả:</strong> @Model.AuthorName</li>
+                        <li><strong>Mô tả:</strong> @Model.Description</li>
+                    </ul>
+                </div>
+
+                <form asp-action="Delete" method="post" class="card-footer text-right">
+                    <input type="hidden" asp-for="AuthorId" />
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i> Xóa
+                    </button>
+                    <a asp-area="Admin" asp-controller="AuthorManager" asp-action="Index" class="btn btn-secondary">
+                        Hủy
+                    </a>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>

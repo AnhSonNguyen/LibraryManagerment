@@ -13,6 +13,8 @@ namespace LibraryManagerment.Models
         public virtual DbSet<TbCategory> TbCategories { get; set; }  // 👈 thêm dòng này
 
         public virtual DbSet<TbAccount> TbAccounts { get; set; }
+        public virtual DbSet<TbAuthor> TbAuthors { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Cấu hình bảng Menu
@@ -56,6 +58,14 @@ namespace LibraryManagerment.Models
                 entity.Property(e => e.Phone).HasMaxLength(20);
                 entity.Property(e => e.Email).HasMaxLength(100);
                 entity.Property(e => e.LastLogin).HasColumnType("datetime");
+            });
+            modelBuilder.Entity<TbAuthor>(entity =>
+            {
+                entity.HasKey(e => e.AuthorId);
+                entity.ToTable("tb_Author");
+
+                entity.Property(e => e.AuthorName).HasMaxLength(250);
+                entity.Property(e => e.Description).HasMaxLength(250);
             });
         }
     }
