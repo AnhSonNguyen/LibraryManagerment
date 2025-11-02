@@ -1,0 +1,45 @@
+﻿@model LibraryManagerment.Models.TbPublisher
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <h1 class="m-0">Xóa nhà xuất bản</h1>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-danger">
+                <div class="card-header">
+                    <h3 class="card-title">Xác nhận xóa nhà xuất bản</h3>
+                </div>
+
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">ID</dt>
+                        <dd class="col-sm-9">@Model.PublisherId</dd>
+
+                        <dt class="col-sm-3">Tên nhà xuất bản</dt>
+                        <dd class="col-sm-9">@Model.PublisherName</dd>
+
+                        <dt class="col-sm-3">Mô tả</dt>
+                        <dd class="col-sm-9">@Model.Description</dd>
+                    </dl>
+                </div>
+
+                <div class="card-footer text-right">
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="PublisherId" />
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash-alt"></i> Xóa
+                        </button>
+                        <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

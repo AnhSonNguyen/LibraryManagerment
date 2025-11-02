@@ -1,0 +1,67 @@
+﻿@model IEnumerable<LibraryManagerment.Models.TbPublisher>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Quản lý nhà xuất bản</h1>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <a asp-area="Admin" asp-controller="PublisherManager" asp-action="Create" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Thêm nhà xuất bản mới
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Danh sách nhà xuất bản</h3>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tên nhà xuất bản</th>
+                                    <th>Mô tả</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.PublisherId</td>
+                                        <td>@item.PublisherName</td>
+                                        <td>@item.Description</td>
+                                        <td>
+                                            <a asp-area="Admin" asp-controller="PublisherManager" asp-action="Edit" asp-route-id="@item.PublisherId" class="btn btn-sm btn-warning mr-1">
+                                                <i class="fas fa-edit"></i> Sửa
+                                            </a>
+                                            <a asp-area="Admin" asp-controller="PublisherManager" asp-action="Delete" asp-route-id="@item.PublisherId" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash-alt"></i> Xóa
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    Tổng số: @Model.Count() nhà xuất bản
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
