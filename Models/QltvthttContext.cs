@@ -15,6 +15,7 @@ namespace LibraryManagerment.Models
         public virtual DbSet<TbAccount> TbAccounts { get; set; }
         public virtual DbSet<TbAuthor> TbAuthors { get; set; }
         public virtual DbSet<TbRole> TbRoles { get; set; }
+        public virtual DbSet<TbPublisher> TbPublishers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Cấu hình bảng Menu
@@ -33,7 +34,6 @@ namespace LibraryManagerment.Models
                 entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
             });
 
-            // 👇 Thêm cấu hình cho bảng Category
             modelBuilder.Entity<TbCategory>(entity =>
             {
                 entity.HasKey(e => e.CategoryId);
@@ -73,6 +73,13 @@ namespace LibraryManagerment.Models
                 entity.ToTable("tb_Role");
 
                 entity.Property(e => e.RoleName).HasMaxLength(250);
+                entity.Property(e => e.Description).HasMaxLength(250);
+            });
+            modelBuilder.Entity<TbPublisher>(entity =>
+            {
+                entity.HasKey(e => e.PublisherId);
+                entity.ToTable("tb_Publisher");
+                entity.Property(e => e.PublisherName).HasMaxLength(250);
                 entity.Property(e => e.Description).HasMaxLength(250);
             });
         }
