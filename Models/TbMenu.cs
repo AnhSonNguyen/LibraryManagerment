@@ -1,12 +1,15 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LibraryManagerment.Models
 {
     public partial class TbMenu
     {
         public int MenuId { get; set; }
-        public string? Title { get; set; }
-        public string? Alias { get; set; }
+        [Required(ErrorMessage = "Vui lòng nhập tên menu")]
+        public string? Title { get; set; } = null!;
+        [Required(ErrorMessage = "Vui lòng nhập tên miền địa chỉ")]
+        public string? Alias { get; set; } = null!;
         public string? Description { get; set; }
         public int? Levels { get; set; }
         public int? ParentId { get; set; }

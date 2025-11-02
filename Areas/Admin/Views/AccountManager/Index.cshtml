@@ -51,7 +51,7 @@
                                         <td>@item.FullName</td>
                                         <td>@item.Email</td>
                                         <td>@item.Phone</td>
-                                        <td>@item.RoleId</td>
+                                        <td>@item.Role?.RoleName</td>
                                         <td>@item.LastLogin?.ToString("dd/MM/yyyy HH:mm")</td>
                                         <td>
                                             @if (item.IsActive)

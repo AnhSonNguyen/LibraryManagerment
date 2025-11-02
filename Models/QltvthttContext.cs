@@ -14,7 +14,7 @@ namespace LibraryManagerment.Models
 
         public virtual DbSet<TbAccount> TbAccounts { get; set; }
         public virtual DbSet<TbAuthor> TbAuthors { get; set; }
-
+        public virtual DbSet<TbRole> TbRoles { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Cấu hình bảng Menu
@@ -65,6 +65,14 @@ namespace LibraryManagerment.Models
                 entity.ToTable("tb_Author");
 
                 entity.Property(e => e.AuthorName).HasMaxLength(250);
+                entity.Property(e => e.Description).HasMaxLength(250);
+            });
+            modelBuilder.Entity<TbRole>(entity =>
+            {
+                entity.HasKey(e => e.RoleId);
+                entity.ToTable("tb_Role");
+
+                entity.Property(e => e.RoleName).HasMaxLength(250);
                 entity.Property(e => e.Description).HasMaxLength(250);
             });
         }

@@ -17,13 +17,17 @@ namespace LibraryManagerment.Areas.Admin.Controllers
         // Danh sách tài khoản
         public async Task<IActionResult> Index()
         {
-            var accounts = await _context.TbAccounts.ToListAsync();
+            var accounts = await _context.TbAccounts
+                .Include(a => a.Role) // ✅ nạp luôn RoleName
+                .ToListAsync();
+
             return View(accounts);
         }
 
         // GET: Thêm tài khoản
         public IActionResult Create()
         {
+            ViewBag.Roles = _context.TbRoles.ToList();
             return View();
         }
 
@@ -48,6 +52,9 @@ namespace LibraryManagerment.Areas.Admin.Controllers
             var account = await _context.TbAccounts.FindAsync(id);
             if (account == null)
                 return NotFound();
+
+            ViewBag.Roles = await _context.TbRoles.ToListAsync();
+
             return View(account);
         }
 
