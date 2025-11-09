@@ -1,0 +1,57 @@
+﻿@model LibraryManagerment.Models.TbBook
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <h1 class="m-0">Xóa sách</h1>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-danger">
+                <div class="card-header">
+                    <h3 class="card-title">Xác nhận xóa sách</h3>
+                </div>
+
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">ID</dt>
+                        <dd class="col-sm-9">@Model.BookId</dd>
+
+                        <dt class="col-sm-3">Tiêu đề</dt>
+                        <dd class="col-sm-9">@Model.Title</dd>
+
+                        <dt class="col-sm-3">Tác giả</dt>
+                        <dd class="col-sm-9">@Model.Author?.AuthorName</dd>
+
+                        <dt class="col-sm-3">Nhà xuất bản</dt>
+                        <dd class="col-sm-9">@Model.Publisher?.PublisherName</dd>
+
+                        <dt class="col-sm-3">Thể loại</dt>
+                        <dd class="col-sm-9">@Model.Category?.Title</dd>
+
+                        <dt class="col-sm-3">Số lượng</dt>
+                        <dd class="col-sm-9">@Model.Quantity</dd>
+
+                        <dt class="col-sm-3">Mô tả</dt>
+                        <dd class="col-sm-9">@Model.Description</dd>
+                    </dl>
+                </div>
+
+                <div class="card-footer text-right">
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="BookId" />
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash-alt"></i> Xóa
+                        </button>
+                        <a asp-area="Admin" asp-controller="BookManager" asp-action="Index" class="btn btn-secondary">Hủy</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

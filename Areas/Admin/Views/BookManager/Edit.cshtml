@@ -1,0 +1,83 @@
+﻿@model LibraryManagerment.Models.TbBook
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+    var authors = ViewBag.Authors as List<LibraryManagerment.Models.TbAuthor>;
+    var publishers = ViewBag.Publishers as List<LibraryManagerment.Models.TbPublisher>;
+    var categories = ViewBag.Categories as List<LibraryManagerment.Models.TbCategory>;
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6"><h1>Chỉnh sửa sách</h1></div>
+                <div class="col-sm-6 text-right">
+                    <a asp-area="Admin" asp-controller="BookManager" asp-action="Index" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Quay lại
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-warning">
+                <div class="card-header"><h3 class="card-title">Thông tin sách</h3></div>
+
+                <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="BookId" />
+
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Tiêu đề</label>
+                            <input asp-for="Title" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tác giả</label>
+                            <select asp-for="AuthorId" class="form-control" asp-items="@(new SelectList(authors, "AuthorId", "AuthorName", Model.AuthorId))"></select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Nhà xuất bản</label>
+                            <select asp-for="PublisherId" class="form-control" asp-items="@(new SelectList(publishers, "PublisherId", "PublisherName", Model.PublisherId))"></select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Thể loại</label>
+                            <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(categories, "CategoryId", "Title", Model.CategoryId))"></select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Số lượng</label>
+                            <input asp-for="Quantity" type="number" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Mô tả</label>
+                            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Hình ảnh</label>
+                            <input asp-for="Image" class="form-control" />
+                        </div>
+
+                        <div class="form-check">
+                            <input asp-for="IsActive" class="form-check-input" />
+                            <label asp-for="IsActive" class="form-check-label">Hoạt động</label>
+                        </div>
+                    </div>
+
+                    <div class="card-footer text-right">
+                        <button type="submit" class="btn btn-warning"><i class="fas fa-save"></i> Cập nhật</button>
+                        <a asp-area="Admin" asp-controller="BookManager" asp-action="Index" class="btn btn-secondary">Hủy</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>

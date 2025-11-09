@@ -10,12 +10,13 @@ namespace LibraryManagerment.Models
         }
 
         public virtual DbSet<TbMenu> TbMenus { get; set; }
-        public virtual DbSet<TbCategory> TbCategories { get; set; }  // 👈 thêm dòng này
+        public virtual DbSet<TbCategory> TbCategories { get; set; } 
 
         public virtual DbSet<TbAccount> TbAccounts { get; set; }
         public virtual DbSet<TbAuthor> TbAuthors { get; set; }
         public virtual DbSet<TbRole> TbRoles { get; set; }
         public virtual DbSet<TbPublisher> TbPublishers { get; set; }
+        public virtual DbSet<TbBook> TbBooks { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Cấu hình bảng Menu
@@ -81,6 +82,19 @@ namespace LibraryManagerment.Models
                 entity.ToTable("tb_Publisher");
                 entity.Property(e => e.PublisherName).HasMaxLength(250);
                 entity.Property(e => e.Description).HasMaxLength(250);
+            });
+            modelBuilder.Entity<TbBook>(entity =>
+            {
+                entity.HasKey(e => e.BookId);
+                entity.ToTable("tb_Book");
+
+                entity.Property(e => e.Title).HasMaxLength(250);
+                entity.Property(e => e.Description).HasMaxLength(1000);
+                entity.Property(e => e.Image).HasMaxLength(500);
+                entity.Property(e => e.CreatedBy).HasMaxLength(100);
+                entity.Property(e => e.ModifiedBy).HasMaxLength(100);
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+                entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
             });
         }
     }
